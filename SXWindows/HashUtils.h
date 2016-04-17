@@ -41,7 +41,7 @@ public:
  	}
 	static sxbyte numToHex(char c) {
 		char buffer[2];
-		sprintf(buffer, "%x", c);
+		sprintf_s(buffer, "%x", c);
 		return buffer[0];
 	}
 };
