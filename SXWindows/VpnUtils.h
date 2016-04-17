@@ -21,8 +21,8 @@ public:
 		pras->dwRedialPause = 60;
 		pras->dwfNetProtocols = RASNP_Ip;
 		pras->dwEncryptionType = ET_Optional;
-		strcpy(pras->szLocalPhoneNumber, server.c_str());
-		strcpy(pras->szDeviceType, RASDT_Vpn);
+		strcpy_s(pras->szLocalPhoneNumber, server.c_str());
+		strcpy_s(pras->szDeviceType, RASDT_Vpn);
 		pras->dwfOptions = RASEO_RemoteDefaultGateway;
 
 		pras->dwVpnStrategy = VS_L2tpOnly;
@@ -35,8 +35,8 @@ public:
 
   		char *uname = HashUtil::vecToChar(username);
 
-		strcpy(ras_cre.szUserName, uname);
-		strcpy(ras_cre.szPassword, passwd.c_str());
+		strcpy_s(ras_cre.szUserName, uname);
+		strcpy_s(ras_cre.szPassword, passwd.c_str());
 		RasSetCredentials(NULL, name.c_str(), &ras_cre, FALSE);
 
 		// Dial a RAS entry in synchronous mode
@@ -48,9 +48,9 @@ public:
 		memset(&rasDialParams, 0, sizeof(RASDIALPARAMS));
 
 		rasDialParams.dwSize = sizeof(RASDIALPARAMS);
-		strcpy(rasDialParams.szEntryName, name.c_str());
-		strcpy(rasDialParams.szUserName, uname);
-		strcpy(rasDialParams.szPassword, passwd.c_str());
+		strcpy_s(rasDialParams.szEntryName, name.c_str());
+		strcpy_s(rasDialParams.szUserName, uname);
+		strcpy_s(rasDialParams.szPassword, passwd.c_str());
 
 		if (RasDial(NULL, NULL, &rasDialParams, 0, NULL, &hRasConn)
 			!= 0) {
